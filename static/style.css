@@ -1,0 +1,255 @@
+body.dark {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0e0e0e;
+  color: #fff;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #121212;
+  border-bottom: 1px solid #222;
+}
+
+.navbar .logo {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.navbar nav a {
+  margin-left: 1.5rem;
+  color: #bbb;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navbar nav a:hover {
+  color: #fff;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #141414;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  color: #888;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero .btn {
+  background: #ffffff10;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.hero .btn:hover {
+  background: #ffffff20;
+}
+
+.gallery {
+  padding: 2rem;
+}
+
+.gallery h2 {
+  margin-bottom: 1rem;
+}
+
+
+
+.template-card:hover {
+  background: #222;
+}
+
+.template-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.template-card h3 {
+  margin: 0.75rem 0 0.25rem;
+}
+.template-card {
+  width: 100%;
+  max-width: 320px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.template-card p {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.view-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: #2d2d2d;
+  color: #fff;
+  text-decoration: none;
+}
+
+.view-btn:hover {
+  background: #3c3c3c;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+  font-size: 0.85rem;
+  background: #0e0e0e;
+  margin-top: 3rem;
+}
+
+.upload-section {
+  max-width: 600px;
+  margin: 4rem auto;
+  background: #827a7a;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00000033;
+}
+
+.upload-section h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.upload-section p {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+.upload-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upload-section input,
+.upload-section textarea {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background: #2c2c2c;
+  color: #fff;
+}
+
+.upload-section input[type='file'] {
+  padding: 0.5rem;
+}
+
+.upload-section .btn {
+  align-self: flex-start;
+  padding: 0.75rem 1.5rem;
+  background: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.upload-section .btn:hover {
+  background: #000000;
+}
+
+.message {
+  background: #222;
+  padding: 0.5rem;
+  text-align: center;
+  color: #90ee90;
+  border-radius: 6px;
+}
+
+.template-view {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.template-container {
+  background: #1a1a1a;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px #00000055;
+}
+
+.template-thumbnail {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.template-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.template-description {
+  color: #aaa;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.template-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn,
+.btn-secondary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn {
+  background: #333;
+  color: white;
+}
+
+.btn:hover {
+  background: #444;
+}
+
+.btn-secondary {
+  background: #2a2a2a;
+  color: #ccc;
+}
+
+.btn-secondary:hover {
+  background: #3a3a3a;
+}

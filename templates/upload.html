@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload Template</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="upload-section">
+    <h1>Upload a New Template</h1>
+    <p>Fill out the details below and upload your template files.</p>
+
+    <form method="POST" enctype="multipart/form-data">
+      <label for="title">Template Title</label>
+      <input type="text" id="title" name="title" required />
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+
+      <label for="file">ZIP File (.zip)</label>
+      <input type="file" id="file" name="file" accept=".zip" required />
+
+      <label for="thumbnail">Thumbnail Image</label>
+      <input type="file" id="thumbnail" name="thumbnail" accept="image/*" required />
+
+      <button type="submit" class="btn">Upload Template</button>
+    </form>
+  </div>
+</body>
+</html>

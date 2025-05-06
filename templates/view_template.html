@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ template[1] }} - Template</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <style>
+      body {
+          font-family: 'Inter', sans-serif;
+          margin: 2rem;
+          background-color: #0e0e0e;
+          color: #f5f5f5;
+          line-height: 1.6;
+      }
+  
+      .template-card {
+          background: #1a1a1a;
+          padding: 2.5rem;
+          border-radius: 16px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+          max-width: 960px;
+          margin: auto;
+          transition: all 0.3s ease;
+      }
+  
+      .template-card:hover {
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+      }
+  
+      h1 {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          background: linear-gradient(to right, #ff8a00, #e52e71);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+      }
+  
+      .template-card img {
+          max-width: 100%;
+          border-radius: 12px;
+          margin-bottom: 1.5rem;
+          border: 2px solid #333;
+      }
+  
+      p {
+          margin: 0.5rem 0;
+          color: #ccc;
+      }
+  
+      strong {
+          color: #fff;
+      }
+  
+      .actions {
+          margin-top: 1.5rem;
+      }
+  
+      .btn {
+          display: inline-block;
+          padding: 0.65rem 1.4rem;
+          border: none;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: background 0.3s ease;
+          font-size: 0.95rem;
+      }
+  
+      .btn-preview {
+          background-color: #28a745;
+          color: white;
+          margin-right: 1rem;
+      }
+  
+      .btn-preview:hover {
+          background-color: #218838;
+      }
+  
+      .btn-download {
+          background-color: #007bff;
+          color: white;
+      }
+  
+      .btn-download:hover {
+          background-color: #0056b3;
+      }
+  
+      .code-preview {
+          background: #111;
+          margin-top: 2rem;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+  
+      .code-header {
+          background: #222;
+          padding: 0.85rem 1.2rem;
+          font-weight: 600;
+          color: #aaa;
+          font-size: 0.95rem;
+          border-bottom: 1px solid #333;
+      }
+  
+      pre {
+          margin: 0;
+          padding: 1.25rem;
+          overflow-x: auto;
+          background: #0d0d0d;
+      }
+  
+      code {
+          font-size: 0.9rem;
+          font-family: 'Fira Code', monospace;
+      }
+  
+      @media (max-width: 768px) {
+          body {
+              margin: 1rem;
+          }
+  
+          .template-card {
+              padding: 1.5rem;
+          }
+  
+          .btn {
+              width: 100%;
+              margin-bottom: 0.8rem;
+          }
+      }
+  </style>
+  
+</head>
+<body>
+    <div class="template-card">
+        <h1>{{ template[1] }}</h1>
+        <img src="{{ url_for('static', filename='thumbnails/' + template[4]) }}" alt="Thumbnail">
+        <p>{{ template[2] }}</p>
+        <p><strong>Uploaded by:</strong> {{ template[5] }}</p>
+
+        <div class="actions">
+            <a class="btn btn-preview" target="_blank"
+               href="{{ url_for('static', filename='previews/' + template[3] + '/index.html') }}">
+                🔍 Live Preview
+            </a>
+            <a class="btn btn-download" href="{{ url_for('download', preview_id=template[3]) }}">
+                ⬇️ Download index.html
+            </a>
+        </div>
+
+        {% if html_code %}
+        <div class="code-preview">
+            <div class="code-header">index.html</div>
+            <pre><code class="language-html">{{ html_code | e }}</code></pre>
+        </div>
+        {% endif %}
+
+        {% if css_code %}
+        <div class="code-preview">
+            <div class="code-header">style.css</div>
+            <pre><code class="language-css">{{ css_code | e }}</code></pre>
+        </div>
+        {% endif %}
+
+        {% if js_code %}
+        <div class="code-preview">
+            <div class="code-header">script.js</div>
+            <pre><code class="language-javascript">{{ js_code | e }}</code></pre>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+</body>
+</html>
