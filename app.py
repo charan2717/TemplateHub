@@ -10,19 +10,21 @@ app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
 # --- Configuration ---
-UPLOAD_FOLDER = 'static/uploads'
-THUMBNAIL_FOLDER = 'static/thumbnails'
-PREVIEW_FOLDER = 'static/previews'
+UPLOAD_FOLDER = '/tmp/uploads'
+THUMBNAIL_FOLDER = '/tmp/thumbnails'
+PREVIEW_FOLDER = '/tmp/previews'
 ALLOWED_EXTENSIONS = {'zip'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['THUMBNAIL_FOLDER'] = THUMBNAIL_FOLDER
 app.config['PREVIEW_FOLDER'] = PREVIEW_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024  # 20MB
 
 # Create necessary folders
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(THUMBNAIL_FOLDER, exist_ok=True)
 os.makedirs(PREVIEW_FOLDER, exist_ok=True)
+
 
 # --- Database Setup ---
 def init_db():
