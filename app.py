@@ -118,36 +118,49 @@ def upload():
         return redirect('/login')
 
     if request.method == 'POST':
-        title = request.form.get('title')
-        description = request.form['description']
-        file = request.files.get('file')
-        thumbnail = request.files['thumbnail']
+        try:
+            # Get form data
+            title = request.form.get('title')
+            description = request.form.get('description')
+            file = request.files.get('file')
+            thumbnail = request.files.get('thumbnail')
 
-        if file and allowed_file(file.filename):
+            if not file or not allowed_file(file.filename):
+                return "❌ Invalid file format"
+
+            # Use /tmp for Render compatibility
+            UPLOAD_FOLDER = '/tmp/uploads'
+            THUMBNAIL_FOLDER = '/tmp/thumbnails'
+            PREVIEW_FOLDER = '/tmp/previews'
+
+            os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+            os.makedirs(THUMBNAIL_FOLDER, exist_ok=True)
+            os.makedirs(PREVIEW_FOLDER, exist_ok=True)
+
             # Save thumbnail
             thumbname = secure_filename(thumbnail.filename)
-            thumbpath = os.path.join(app.config['THUMBNAIL_FOLDER'], thumbname)
+            thumbpath = os.path.join(THUMBNAIL_FOLDER, thumbname)
             thumbnail.save(thumbpath)
 
-            # Generate unique preview folder
+            # Generate unique folder for extracted files
             preview_id = str(uuid.uuid4())
-            preview_path = os.path.join(app.config['PREVIEW_FOLDER'], preview_id)
+            preview_path = os.path.join(PREVIEW_FOLDER, preview_id)
             os.makedirs(preview_path, exist_ok=True)
 
-            # Save zip temporarily
-            zip_temp_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
+            # Save uploaded ZIP
+            zip_temp_path = os.path.join(UPLOAD_FOLDER, secure_filename(file.filename))
             file.save(zip_temp_path)
 
-            # Extract zip to preview folder
+            # Extract ZIP
             try:
                 with zipfile.ZipFile(zip_temp_path, 'r') as zip_ref:
                     zip_ref.extractall(preview_path)
             except zipfile.BadZipFile:
                 return "❌ Invalid ZIP file"
 
-            os.remove(zip_temp_path)  # Remove temp zip
+            os.remove(zip_temp_path)
 
-            # Insert into database
+            # DB Insert (unchanged)
             conn = sqlite3.connect('database.db')
             cur = conn.cursor()
             cur.execute('''
@@ -159,6 +172,9 @@ def upload():
 
             return redirect('/')
 
+        except Exception as e:
+            return f"❌ Internal Error: {str(e)}"
+    
     return render_template('upload.html')
 
 @app.route('/template/<int:id>')
